@@ -6,4 +6,6 @@
     <string name="ai_move">AI Move</string>
     <string name="resign">Resign</string>
     <string name="draw">Draw</string>
+    <string name="sort_by_date">Sort by Date</string>
+    <string name="sort_by_name">Sort by Name</string>
 </resources>

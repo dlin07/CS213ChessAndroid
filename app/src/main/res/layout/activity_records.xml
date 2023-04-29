@@ -4,4 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RecordsActivity"/>
+    tools:context=".RecordsActivity">
+
+    <Button
+        android:id="@+id/bSortDate"
+        android:layout_width="175dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="118dp"
+        android:layout_marginTop="185dp"
+        android:layout_marginEnd="118dp"
+        android:onClick="sortByDateClicked"
+        android:text="@string/sort_by_date"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/bSortName"
+        android:layout_width="175dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="118dp"
+        android:layout_marginTop="345dp"
+        android:layout_marginEnd="118dp"
+        android:onClick="sortByNameClicked"
+        android:text="@string/sort_by_name"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
