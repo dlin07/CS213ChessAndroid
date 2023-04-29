@@ -141,12 +141,11 @@ public class Chess {
     /**
      * The main driver code of the chess program. It handles all user inputs and the
      * state of the game.
-     * 
-     * @param args The user inputs from console
+     *
      * @throws IOException An exception thrown when the program runs into an
      *                     input/output exception
      */
-    public static void main(String[] args) throws IOException {
+    public static void newGame() throws IOException {
         // create board
         Square[][] board = new Square[8][8];
 
