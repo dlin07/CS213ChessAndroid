@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Chess App</string>
     <string name="start_game">Start a Game</string>
-    <string name="view_history">View Game History</string>
+    <string name="view_records">View Game Records</string>
     <string name="undo">Undo</string>
     <string name="ai_move">AI Move</string>
     <string name="resign">Resign</string>

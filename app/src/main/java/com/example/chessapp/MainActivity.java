@@ -19,4 +19,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ChessActivity.class);
         startActivity(intent);
     }
+
+    // go to RecordsActivity when records button is clicked
+    public void gameRecordsClicked(View view) {
+        Intent intent = new Intent(this, RecordsActivity.class);
+        startActivity(intent);
+    }
 }
