@@ -1,8 +1,8 @@
 package com.example.chessapp;
 
-import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
 
 public class ChessActivity extends AppCompatActivity {
 
