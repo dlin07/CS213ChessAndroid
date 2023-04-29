@@ -11,4 +11,8 @@ public class ChessActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chess);
     }
+
+    public void pieceClicked() {
+        //TODO: add implementation for when a piece is clicked
+    }
 }

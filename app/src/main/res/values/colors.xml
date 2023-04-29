@@ -2,4 +2,10 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Colors for the chess board theme -->
+    <color name="chessDark">#779556</color>
+    <color name="chessWhite">#EBECD0</color>
+    <color name="darkAccent">#BBCB2B</color>
+    <color name="lightAccent">#F7F769</color>
 </resources>
