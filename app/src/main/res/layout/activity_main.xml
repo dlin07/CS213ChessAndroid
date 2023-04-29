@@ -7,14 +7,38 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="110dp"
-        android:layout_height="44dp"
-        android:text="Hello World!"
+        android:layout_width="171dp"
+        android:layout_height="71dp"
+        android:text="@string/app_name"
+        android:textAlignment="center"
+        android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.435"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.36" />
+        app:layout_constraintVertical_bias="0.215" />
+
+    <Button
+        android:id="@+id/bStartGame"
+        android:layout_width="175dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="118dp"
+        android:layout_marginBottom="309dp"
+        android:onClick="startGameClicked"
+        android:text="@string/start_game"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/bViewHistory"
+        android:layout_width="175dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="118dp"
+        android:layout_marginBottom="188dp"
+        android:onClick="gameHistoryClicked"
+        android:text="@string/view_history"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
