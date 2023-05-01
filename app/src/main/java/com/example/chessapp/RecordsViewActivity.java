@@ -1,9 +1,16 @@
 package com.example.chessapp;
 
+import static java.util.Comparator.comparing;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import com.example.chessapp.Game.Record;
+import com.example.chessapp.Pieces.RecordsList;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -26,40 +33,59 @@ public class RecordsViewActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String sortType = intent.getStringExtra("sortType");
 
-        Path records = Paths.get("/data/user/0/com.example.chessapp/files/records.txt");
+        RecordsList records = new RecordsList();
+        //TODO: serialize records after game ends
+
+        // checks if the users.dat file exists
+        Path recordsData = Paths.get("/data/user/0/com.example.chessapp/files/records.dat");
+
+        if (Files.exists(recordsData)) {
+            // loads the users from the .dat file
+            try {
+                records.loadRecords(recordsData.toString());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        //sort records based on sortType
+        if(sortType.equals("name")){
+            records.getRecords().sort(comparing(Record::getName));
+        } else if(sortType.equals("time")){
+            records.getRecords().sort(comparing(Record::getTime));
+        }
+
+        ListView lvGameRecords = findViewById(R.id.lvGameRecords);
+
+        // create the adapter to convert the array to views
+        ArrayAdapter<Record> adapter = new ArrayAdapter<>(
+                this, android.R.layout.simple_list_item_1, records.getRecords());
+
+        // attach the adapter to a ListView
+        lvGameRecords.setAdapter(adapter);
+
+       /* Path records = Paths.get("/data/user/0/com.example.chessapp/files/records.txt");
         try {
             if(!Files.exists(records)){
-                System.out.println("creating file");
                 Files.createFile(records);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        FileInputStream in;
+        Scanner scanner;
         try {
-            in = openFileInput("records.txt");
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-        InputStreamReader inputStreamReader = new InputStreamReader(in);
-        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
-        String line;
-        while (true) {
-            try {
-                if (!((line = bufferedReader.readLine()) != null)) break;
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            System.out.println(line);
-        }
-        try {
-            inputStreamReader.close();
+            scanner = new Scanner(records);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
+        while(scanner.hasNextLine()){
+            System.out.println(scanner.nextLine());
+        }
 
+        scanner.close();*/
     }
 }
