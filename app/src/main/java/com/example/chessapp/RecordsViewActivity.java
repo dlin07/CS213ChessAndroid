@@ -1,5 +1,6 @@
 package com.example.chessapp;
 
+import static java.lang.Thread.sleep;
 import static java.util.Comparator.comparing;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -50,11 +51,34 @@ public class RecordsViewActivity extends AppCompatActivity {
             }
         }
 
+        Record t2 = new Record();
+        t2.setName("test2");
+
+        try {
+            sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        Record t1 = new Record();
+        t1.setName("test1");
+
+        try {
+            sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        Record t3 = new Record();
+        t3.setName("test3");
+
+        records.addRecord(t1);
+        records.addRecord(t2);
+        records.addRecord(t3);
+
         //sort records based on sortType
         if(sortType.equals("name")){
             records.getRecords().sort(comparing(Record::getName));
-        } else if(sortType.equals("time")){
-            records.getRecords().sort(comparing(Record::getTime));
+        } else if(sortType.equals("date")){
+            records.getRecords().sort(comparing(Record::getDate));
         }
 
         ListView lvGameRecords = findViewById(R.id.lvGameRecords);

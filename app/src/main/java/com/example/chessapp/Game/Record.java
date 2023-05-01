@@ -5,13 +5,13 @@ import java.util.Comparator;
 
 public class Record implements Serializable {
     private String name;
-    private long time;
+    private long date;
 
 
 
     public Record(){
         // get epoch millis
-        this.time = System.currentTimeMillis();
+        this.date = System.currentTimeMillis();
     }
 
     public void setName(String name) {
@@ -21,14 +21,14 @@ public class Record implements Serializable {
     //override toString method to print name and time
     @Override
     public String toString(){
-        return this.name + " \\u2014 " + this.time;
+        return this.name + " \u2014 " + this.date;
     }
 
     public String getName() {
         return this.name;
     }
 
-    public long getTime() {
-        return this.time;
+    public long getDate() {
+        return this.date;
     }
 }
