@@ -44,6 +44,7 @@ public class ChessActivity extends AppCompatActivity {
         pieces.put("bB", R.drawable.bbishop);
         pieces.put("bQ", R.drawable.bqueen);
         pieces.put("bK", R.drawable.bking);
+        pieces.put("ee", R.drawable.transparent);
 
         boardView = findViewById(R.id.board);
         text = findViewById(R.id.textView);
@@ -72,14 +73,15 @@ public class ChessActivity extends AppCompatActivity {
             game.playMove(move);
 
             // updates board view with correct pieces in correct places using toString method
-            boardView.removeAllViews();
+            // boardView.removeAllViews();
 
             for (int i = 0; i < 64; i++) {
-                for (int j = 0; j < game.toString().length(); j += 3) {
-                    ImageView image = new ImageView(this);
-                    image.setImageResource(pieces.get(game.printBoard(game.getBoard()).substring(j, j + 2)));
-                    boardView.addView(image);
-                }
+                int j = i*3;
+
+                ImageView image = (ImageView) boardView.getChildAt(i);
+                String test = game.printBoard(game.getBoard());
+                image.setImageResource(pieces.get(game.printBoard(game.getBoard()).substring(j, j + 2)));
+
             }
 
             r1 = c1 = r2 = c2 = -1;

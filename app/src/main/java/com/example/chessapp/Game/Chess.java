@@ -14,7 +14,7 @@ public class Chess {
     /**
      * This boolean, DEBUG, allows certain messages to appear to debug the program.
      */
-    private final static boolean DEBUG = true;
+    private final static boolean DEBUG = false;
 
     /**
      * This boolean, SCAN_DEBUG, allows the moves in the text file named 'moves.txt'
@@ -57,12 +57,12 @@ public class Chess {
                         pieceString = "K";
 
                     if (currPiece.getColor().equals("white"))
-                        boardString += boardString + "w" + pieceString + " ";
+                        boardString = boardString + "w" + pieceString + " ";
                     else
-                        boardString += boardString + "b" + pieceString + " ";
+                        boardString = boardString + "b" + pieceString + " ";
                 } else {
-                    // fill in black/white spaces
-                    boardString += boardString + "ee ";
+
+                    boardString = boardString + "ee ";
                 }
             }
         }
