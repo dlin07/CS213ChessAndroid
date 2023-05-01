@@ -14,7 +14,7 @@ public class Chess {
     /**
      * This boolean, DEBUG, allows certain messages to appear to debug the program.
      */
-    private final static boolean DEBUG = false;
+    private final static boolean DEBUG = true;
 
     /**
      * This boolean, SCAN_DEBUG, allows the moves in the text file named 'moves.txt'
@@ -27,7 +27,6 @@ public class Chess {
     private Player blackPlayer;
     private Player currPlayer;
     private boolean drawOffered;
-    private int r1, c1, r2, c2;
 
     /**
      * This method prints the game board with each piece, its colors, the file, and
@@ -35,7 +34,8 @@ public class Chess {
      *
      * @param board The board
      */
-    public static void printBoard(Square[][] board) {
+    public String printBoard(Square[][] board) {
+        String boardString = "";
         for (int i = 0; i <= 7; i++) {
             for (int j = 0; j <= 7; j++) {
                 Piece currPiece = board[i][j].getPiece();
@@ -57,28 +57,16 @@ public class Chess {
                         pieceString = "K";
 
                     if (currPiece.getColor().equals("white"))
-                        System.out.print("w" + pieceString + " ");
+                        boardString += boardString + "w" + pieceString + " ";
                     else
-                        System.out.print("b" + pieceString + " ");
+                        boardString += boardString + "b" + pieceString + " ";
                 } else {
                     // fill in black/white spaces
-                    if ((i % 2) == 0) {
-                        if ((j % 2) == 0)
-                            System.out.print("   ");
-                        else
-                            System.out.print("## ");
-                    } else {
-                        if ((j % 2) == 0)
-                            System.out.print("## ");
-                        else
-                            System.out.print("   ");
-                    }
+                    boardString += boardString + "ee ";
                 }
             }
-            int row = 8 - i;
-            System.out.println(row);
         }
-        System.out.println(" a  b  c  d  e  f  g  h\n");
+        return boardString;
     }
 
     /**
@@ -120,7 +108,7 @@ public class Chess {
         }
     }
 
-    public int indexToLetter(int i) {
+    public char indexToLetter(int i) {
         switch (i) {
             case 0:
                 return 'a';
@@ -139,7 +127,7 @@ public class Chess {
             case 7:
                 return 'h';
             default:
-                return -1;
+                return 'z';
         }
     }
 
@@ -251,7 +239,7 @@ public class Chess {
         if (DEBUG)
             System.out.println("x1: " + x1 + ", y1: " + y1 + ", x2: " + x2 + ", y2: " + y2);
 
-        Square currentSquare = board[r1][c1];
+        Square currentSquare = board[x1][y1];
         // no piece at square
         if (currentSquare.getPiece() == null) {
             if (DEBUG)
@@ -363,6 +351,10 @@ public class Chess {
             currPlayer = blackPlayer;
         else
             currPlayer = whitePlayer;
+    }
+
+    public Square[][] getBoard() {
+        return board;
     }
 
     public boolean draw() {

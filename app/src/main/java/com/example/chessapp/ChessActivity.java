@@ -8,17 +8,21 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.chessapp.Game.*;
 import com.example.chessapp.Pieces.*;
 
+import java.util.HashMap;
+
 public class ChessActivity extends AppCompatActivity {
     private Chess game;
     private GridLayout boardView;
     private TextView text;
-    private int r1, c1, r2, c2 = -1;
+    private int r1, c1, r2, c2;
     private String move;
+    private HashMap<String, Integer> pieces;
 
 
     @Override
@@ -26,23 +30,39 @@ public class ChessActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chess);
 
+        // hashmap containing pieces and their id's
+        pieces = new HashMap<>();
+        pieces.put("wp", R.drawable.wpawn);
+        pieces.put("wR", R.drawable.wrook);
+        pieces.put("wN", R.drawable.wknight);
+        pieces.put("wB", R.drawable.wbishop);
+        pieces.put("wQ", R.drawable.wqueen);
+        pieces.put("wK", R.drawable.wking);
+        pieces.put("bp", R.drawable.bpawn);
+        pieces.put("bR", R.drawable.brook);
+        pieces.put("bN", R.drawable.bknight);
+        pieces.put("bB", R.drawable.bbishop);
+        pieces.put("bQ", R.drawable.bqueen);
+        pieces.put("bK", R.drawable.bking);
+
         boardView = findViewById(R.id.board);
         text = findViewById(R.id.textView);
+        r1 = c1 = r2 = c2 = -1;
         game = new Chess();
     }
 
     public void squareClicked(View v) {
         if (r1 == -1) {
             for (int i = 0; i < 64; i++) {
-                if (boardView.getChildAt(i).getId() == v.getId()) {
-                    r1 = 8-(i / 8);
+                if (boardView.getChildAt(i) == v) {
+                    r1 = 8-(int)(i / 8);
                     c1 = i % 8;
                 }
             }
         } else {
             for (int i = 0; i < 64; i++) {
-                if (boardView.getChildAt(i).getId() == v.getId()) {
-                    r2 = 8-(i / 8);
+                if (boardView.getChildAt(i) == v) {
+                    r2 = 8-(int)(i / 8);
                     c2 = i % 8;
                 }
             }
@@ -50,6 +70,19 @@ public class ChessActivity extends AppCompatActivity {
             move = "" + game.indexToLetter(c1) + r1 + " " + game.indexToLetter(c2) + r2;
             text.setText(move);
             game.playMove(move);
+
+            // updates board view with correct pieces in correct places using toString method
+            boardView.removeAllViews();
+
+            for (int i = 0; i < 64; i++) {
+                for (int j = 0; j < game.toString().length(); j += 3) {
+                    ImageView image = new ImageView(this);
+                    image.setImageResource(pieces.get(game.printBoard(game.getBoard()).substring(j, j + 2)));
+                    boardView.addView(image);
+                }
+            }
+
+            r1 = c1 = r2 = c2 = -1;
         }
     }
 
