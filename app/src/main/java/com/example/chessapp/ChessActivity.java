@@ -6,29 +6,51 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.GridLayout;
+import android.widget.TextView;
 
 import com.example.chessapp.Game.*;
 import com.example.chessapp.Pieces.*;
 
 public class ChessActivity extends AppCompatActivity {
-    private Square[][] board;
+    private Chess game;
+    private GridLayout boardView;
+    private TextView text;
+    private int r1, c1, r2, c2 = -1;
+    private String move;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chess);
+
+        boardView = findViewById(R.id.board);
+        text = findViewById(R.id.textView);
+        game = new Chess();
     }
 
-    public void squareClicked(AdapterView<?> parent, View view, int position, long id) {
-        String square = parent.getItemAtPosition(position).toString();
+    public void squareClicked(View v) {
+        if (r1 == -1) {
+            for (int i = 0; i < 64; i++) {
+                if (boardView.getChildAt(i).getId() == v.getId()) {
+                    r1 = 8-(i / 8);
+                    c1 = i % 8;
+                }
+            }
+        } else {
+            for (int i = 0; i < 64; i++) {
+                if (boardView.getChildAt(i).getId() == v.getId()) {
+                    r2 = 8-(i / 8);
+                    c2 = i % 8;
+                }
+            }
 
-
-        //String rank = id.substring(0, 1);
-        //String file = id.substring(1, 2);;
-
+            move = "" + game.indexToLetter(c1) + r1 + " " + game.indexToLetter(c2) + r2;
+            text.setText(move);
+            game.playMove(move);
+        }
     }
 
     // undoes last move when button is clicked
