@@ -7,6 +7,7 @@
     tools:context=".ChessActivity">
 
     <GridLayout
+        android:id="@+id/board"
         android:layout_width="383dp"
         android:layout_height="506dp"
         android:layout_marginStart="14dp"
@@ -28,7 +29,7 @@
             android:layout_marginStart="3dp"
             android:layout_marginTop="0dp"
             android:background="@color/chessWhite"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/brook" />
 
         <ImageView
@@ -39,7 +40,7 @@
             android:layout_column="0"
             android:layout_marginStart="3dp"
             android:background="@color/chessDark"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/bpawn" />
 
         <ImageView
@@ -50,7 +51,7 @@
             android:layout_column="0"
             android:layout_marginStart="3dp"
             android:background="@color/chessWhite"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/transparent" />
 
         <ImageView
@@ -61,7 +62,7 @@
             android:layout_column="0"
             android:layout_marginStart="3dp"
             android:background="@color/chessDark"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/transparent" />
 
         <ImageView
@@ -72,7 +73,7 @@
             android:layout_column="0"
             android:layout_marginStart="3dp"
             android:background="@color/chessWhite"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/transparent" />
 
         <ImageView
@@ -83,7 +84,7 @@
             android:layout_column="0"
             android:layout_marginStart="3dp"
             android:background="@color/chessDark"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/transparent" />
 
         <ImageView
@@ -94,7 +95,7 @@
             android:layout_column="0"
             android:layout_marginStart="3dp"
             android:background="@color/chessWhite"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/wpawn" />
 
         <ImageView
@@ -105,7 +106,7 @@
             android:layout_column="0"
             android:layout_marginStart="3dp"
             android:background="@color/chessDark"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/wrook" />
 
         <ImageView
@@ -116,7 +117,7 @@
             android:layout_column="1"
             android:layout_marginTop="0dp"
             android:background="@color/chessDark"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/bknight" />
 
         <ImageView
@@ -126,7 +127,7 @@
             android:layout_row="1"
             android:layout_column="1"
             android:background="@color/chessWhite"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/bpawn" />
 
         <ImageView
@@ -136,7 +137,7 @@
             android:layout_row="2"
             android:layout_column="1"
             android:background="@color/chessDark"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/transparent" />
 
         <ImageView
@@ -146,7 +147,7 @@
             android:layout_row="3"
             android:layout_column="1"
             android:background="@color/chessWhite"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/transparent" />
 
         <ImageView
@@ -156,7 +157,7 @@
             android:layout_row="4"
             android:layout_column="1"
             android:background="@color/chessDark"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/transparent" />
 
         <ImageView
@@ -166,7 +167,7 @@
             android:layout_row="5"
             android:layout_column="1"
             android:background="@color/chessWhite"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/transparent" />
 
         <ImageView
@@ -176,7 +177,7 @@
             android:layout_row="6"
             android:layout_column="1"
             android:background="@color/chessDark"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/wpawn" />
 
         <ImageView
@@ -186,7 +187,7 @@
             android:layout_row="7"
             android:layout_column="1"
             android:background="@color/chessWhite"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/wknight" />
 
         <ImageView
@@ -197,7 +198,7 @@
             android:layout_column="2"
             android:layout_marginTop="0dp"
             android:background="@color/chessWhite"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/bbishop" />
 
         <ImageView
@@ -207,7 +208,7 @@
             android:layout_row="1"
             android:layout_column="2"
             android:background="@color/chessDark"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/bpawn" />
 
         <ImageView
@@ -217,7 +218,7 @@
             android:layout_row="2"
             android:layout_column="2"
             android:background="@color/chessWhite"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/transparent" />
 
         <ImageView
@@ -227,7 +228,7 @@
             android:layout_row="3"
             android:layout_column="2"
             android:background="@color/chessDark"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/transparent" />
 
         <ImageView
@@ -237,7 +238,7 @@
             android:layout_row="4"
             android:layout_column="2"
             android:background="@color/chessWhite"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/transparent" />
 
         <ImageView
@@ -247,7 +248,7 @@
             android:layout_row="5"
             android:layout_column="2"
             android:background="@color/chessDark"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/transparent" />
 
         <ImageView
@@ -257,7 +258,7 @@
             android:layout_row="6"
             android:layout_column="2"
             android:background="@color/chessWhite"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/wpawn" />
 
         <ImageView
@@ -267,7 +268,7 @@
             android:layout_row="7"
             android:layout_column="2"
             android:background="@color/chessDark"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/wbishop" />
 
         <ImageView
@@ -278,7 +279,7 @@
             android:layout_column="3"
             android:layout_marginTop="0dp"
             android:background="@color/chessDark"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/bqueen" />
 
         <ImageView
@@ -288,7 +289,7 @@
             android:layout_row="1"
             android:layout_column="3"
             android:background="@color/chessWhite"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/bpawn" />
 
         <ImageView
@@ -298,7 +299,7 @@
             android:layout_row="2"
             android:layout_column="3"
             android:background="@color/chessDark"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/transparent" />
 
         <ImageView
@@ -308,7 +309,7 @@
             android:layout_row="3"
             android:layout_column="3"
             android:background="@color/chessWhite"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/transparent" />
 
         <ImageView
@@ -318,7 +319,7 @@
             android:layout_row="4"
             android:layout_column="3"
             android:background="@color/chessDark"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/transparent" />
 
         <ImageView
@@ -328,7 +329,7 @@
             android:layout_row="5"
             android:layout_column="3"
             android:background="@color/chessWhite"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/transparent" />
 
         <ImageView
@@ -338,7 +339,7 @@
             android:layout_row="6"
             android:layout_column="3"
             android:background="@color/chessDark"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/wpawn" />
 
         <ImageView
@@ -348,7 +349,7 @@
             android:layout_row="7"
             android:layout_column="3"
             android:background="@color/chessWhite"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/wqueen" />
 
         <ImageView
@@ -359,7 +360,7 @@
             android:layout_column="4"
             android:layout_marginTop="0dp"
             android:background="@color/chessWhite"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/bking" />
 
         <ImageView
@@ -369,7 +370,7 @@
             android:layout_row="1"
             android:layout_column="4"
             android:background="@color/chessDark"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/bpawn" />
 
         <ImageView
@@ -379,7 +380,7 @@
             android:layout_row="2"
             android:layout_column="4"
             android:background="@color/chessWhite"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/transparent" />
 
         <ImageView
@@ -389,7 +390,7 @@
             android:layout_row="3"
             android:layout_column="4"
             android:background="@color/chessDark"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/transparent" />
 
         <ImageView
@@ -399,7 +400,7 @@
             android:layout_row="4"
             android:layout_column="4"
             android:background="@color/chessWhite"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/transparent" />
 
         <ImageView
@@ -409,7 +410,7 @@
             android:layout_row="5"
             android:layout_column="4"
             android:background="@color/chessDark"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/transparent" />
 
         <ImageView
@@ -419,7 +420,7 @@
             android:layout_row="6"
             android:layout_column="4"
             android:background="@color/chessWhite"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/wpawn" />
 
         <ImageView
@@ -429,7 +430,7 @@
             android:layout_row="7"
             android:layout_column="4"
             android:background="@color/chessDark"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/wking" />
 
         <ImageView
@@ -440,7 +441,7 @@
             android:layout_column="5"
             android:layout_marginTop="0dp"
             android:background="@color/chessDark"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/bbishop" />
 
         <ImageView
@@ -450,7 +451,7 @@
             android:layout_row="1"
             android:layout_column="5"
             android:background="@color/chessWhite"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/bpawn" />
 
         <ImageView
@@ -460,7 +461,7 @@
             android:layout_row="2"
             android:layout_column="5"
             android:background="@color/chessDark"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/transparent" />
 
         <ImageView
@@ -470,7 +471,7 @@
             android:layout_row="3"
             android:layout_column="5"
             android:background="@color/chessWhite"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/transparent" />
 
         <ImageView
@@ -480,7 +481,7 @@
             android:layout_row="4"
             android:layout_column="5"
             android:background="@color/chessDark"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/transparent" />
 
         <ImageView
@@ -490,7 +491,7 @@
             android:layout_row="5"
             android:layout_column="5"
             android:background="@color/chessWhite"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/transparent" />
 
         <ImageView
@@ -500,7 +501,7 @@
             android:layout_row="6"
             android:layout_column="5"
             android:background="@color/chessDark"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/wpawn" />
 
         <ImageView
@@ -510,7 +511,7 @@
             android:layout_row="7"
             android:layout_column="5"
             android:background="@color/chessWhite"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/wbishop" />
 
         <ImageView
@@ -521,7 +522,7 @@
             android:layout_column="6"
             android:layout_marginTop="0dp"
             android:background="@color/chessWhite"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/bknight" />
 
         <ImageView
@@ -531,7 +532,7 @@
             android:layout_row="1"
             android:layout_column="6"
             android:background="@color/chessDark"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/bpawn" />
 
         <ImageView
@@ -541,7 +542,7 @@
             android:layout_row="2"
             android:layout_column="6"
             android:background="@color/chessWhite"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/transparent" />
 
         <ImageView
@@ -551,7 +552,7 @@
             android:layout_row="3"
             android:layout_column="6"
             android:background="@color/chessDark"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/transparent" />
 
         <ImageView
@@ -561,7 +562,7 @@
             android:layout_row="4"
             android:layout_column="6"
             android:background="@color/chessWhite"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/transparent" />
 
         <ImageView
@@ -571,7 +572,7 @@
             android:layout_row="5"
             android:layout_column="6"
             android:background="@color/chessDark"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/transparent" />
 
         <ImageView
@@ -581,7 +582,7 @@
             android:layout_row="6"
             android:layout_column="6"
             android:background="@color/chessWhite"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/wpawn" />
 
         <ImageView
@@ -591,7 +592,7 @@
             android:layout_row="7"
             android:layout_column="6"
             android:background="@color/chessDark"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/wknight" />
 
         <ImageView
@@ -602,7 +603,7 @@
             android:layout_column="7"
             android:layout_marginTop="0dp"
             android:background="@color/chessDark"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/brook" />
 
         <ImageView
@@ -612,7 +613,7 @@
             android:layout_row="1"
             android:layout_column="7"
             android:background="@color/chessWhite"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/bpawn" />
 
         <ImageView
@@ -622,7 +623,7 @@
             android:layout_row="2"
             android:layout_column="7"
             android:background="@color/chessDark"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/transparent" />
 
         <ImageView
@@ -632,7 +633,7 @@
             android:layout_row="3"
             android:layout_column="7"
             android:background="@color/chessWhite"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/transparent" />
 
         <ImageView
@@ -642,7 +643,7 @@
             android:layout_row="4"
             android:layout_column="7"
             android:background="@color/chessDark"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/transparent" />
 
         <ImageView
@@ -652,7 +653,7 @@
             android:layout_row="5"
             android:layout_column="7"
             android:background="@color/chessWhite"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/transparent" />
 
         <ImageView
@@ -662,7 +663,7 @@
             android:layout_row="6"
             android:layout_column="7"
             android:background="@color/chessDark"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/wpawn" />
 
         <ImageView
@@ -672,46 +673,50 @@
             android:layout_row="7"
             android:layout_column="7"
             android:background="@color/chessWhite"
-            android:onClick="pieceClicked"
+            android:onClick="squareClicked"
             app:srcCompat="@drawable/wrook" />
     </GridLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/undo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="110dp"
+        android:onClick="handleUndo"
         android:text="@string/undo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/ai"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="32dp"
+        android:onClick="handleAIMove"
         android:text="@string/ai_move"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/draw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="109dp"
+        android:onClick="handleDraw"
         android:text="@string/draw"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/resign"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="35dp"
+        android:onClick="handleResign"
         android:text="@string/resign"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

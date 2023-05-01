@@ -8,4 +8,7 @@
     <string name="draw">Draw</string>
     <string name="sort_by_date">Sort by Date</string>
     <string name="sort_by_name">Sort by Name</string>
+    <string name="Ok">Ok</string>
+    <string name="Cancel">Cancel</string>
+    <string name="Draw">Game ended in a draw. Do you want to save the game?</string>
 </resources>
