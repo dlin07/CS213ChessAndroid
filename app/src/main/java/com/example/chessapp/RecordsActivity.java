@@ -19,12 +19,14 @@ public class RecordsActivity extends AppCompatActivity {
     //sorts listview in RecordsViewActivity by date
     public void sortByDateClicked(View view) {
         Intent intent = new Intent(this, RecordsViewActivity.class);
+        intent.putExtra("sortType", "date");
         startActivity(intent);
     }
 
     //sorts listview in RecordsViewActivity by name
     public void sortByNameClicked(View view) {
         Intent intent = new Intent(this, RecordsViewActivity.class);
+        intent.putExtra("sortType", "name");
         startActivity(intent);
     }
 }
