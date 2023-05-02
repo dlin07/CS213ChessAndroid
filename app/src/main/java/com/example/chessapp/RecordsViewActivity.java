@@ -38,15 +38,13 @@ public class RecordsViewActivity extends AppCompatActivity {
         //TODO: serialize records after game ends
 
         // checks if the users.dat file exists
-        Path recordsData = Paths.get("/data/user/0/com.example.chessapp/files/records.dat");
+        Path recordsData = Paths.get(getFilesDir().getPath()+ "records.dat");
 
         if (Files.exists(recordsData)) {
             // loads the users from the .dat file
             try {
                 records.loadRecords(recordsData.toString());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            } catch (ClassNotFoundException e) {
+            } catch (IOException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
         }

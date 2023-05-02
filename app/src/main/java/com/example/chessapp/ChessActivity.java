@@ -6,7 +6,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,6 +14,10 @@ import android.widget.TextView;
 import com.example.chessapp.Game.*;
 import com.example.chessapp.Pieces.*;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 
 public class ChessActivity extends AppCompatActivity {
@@ -24,14 +28,35 @@ public class ChessActivity extends AppCompatActivity {
     private String move;
     private HashMap<String, Integer> pieces;
 
+    private RecordsList records;
+
+    private Record record;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chess);
 
+        // load the serialized records
+        records = new RecordsList();
+
+        // checks if the users.dat file exists
+        Path recordsData = Paths.get("/data/user/0/com.example.chessapp/files/records.dat");
+
+        if (Files.exists(recordsData)) {
+            // loads the users from the .dat file
+            try {
+                records.loadRecords(recordsData.toString());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
         // starts recording the game
-        Record record = new Record();
+        record = new Record();
 
         // hashmap containing pieces and their id's
         pieces = new HashMap<>();
@@ -143,10 +168,47 @@ public class ChessActivity extends AppCompatActivity {
         // Add the buttons
         builder.setPositiveButton(R.string.Ok, (dialog, id) -> {
             // User clicked OK button
-            // new activity for saving game appears
 
-            //Intent intent = new Intent(ChessActivity.this, SaveGameActivity.class);
-            //startActivity(intent);
+            // create popup for saving game with two buttons: save and cancel
+            // add user input for game name
+            AlertDialog.Builder builder2 = new AlertDialog.Builder(ChessActivity.this);
+            // user text input
+            final EditText input = new EditText(ChessActivity.this);
+            builder2.setView(input);
+
+            // Add save and cancel buttons
+            builder2.setPositiveButton(R.string.Save, (dialog2, id2) -> {
+                // User clicked save button
+                // saves game and goes back to main activity
+
+                // gets user input for game name
+                String gameName = input.getText().toString();
+
+                // set record name as gameName and adds record to records
+                record.setName(gameName);
+                records.addRecord(record);
+
+                // serializes records to .dat file
+                try {
+                    records.writeRecords(getFilesDir().getPath() + "records.dat");
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+                Intent intent = new Intent(ChessActivity.this, MainActivity.class);
+                startActivity(intent);
+            });
+            builder2.setNegativeButton(R.string.Cancel, (dialog2, id2) -> {
+                // User cancelled the dialog
+                // goes back to main activity
+
+                Intent intent = new Intent(ChessActivity.this, MainActivity.class);
+                startActivity(intent);
+            });
+
+            // Create the AlertDialog
+            AlertDialog dialog2 = builder2.create();
+            dialog2.show();
         });
         builder.setNegativeButton(R.string.Cancel, (dialog, id) -> {
             // User cancelled the dialog
