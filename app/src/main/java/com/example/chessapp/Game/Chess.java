@@ -180,7 +180,7 @@ public class Chess {
         currPlayer = whitePlayer;
 
         // checks whether there is a draw on the table
-        drawOffered = false;
+        drawOffered = true;
     }
 
     // takes in the rank/row number and file/column letter (as a number) and makes the move
@@ -322,6 +322,11 @@ public class Chess {
                     return "cWhite wins";
                 }
 
+                if (currPlayer.getColor().equals("white"))
+                    currPlayer = blackPlayer;
+                else
+                    currPlayer = whitePlayer;
+
                 return "bCheck";
             }
         } else {
@@ -332,6 +337,11 @@ public class Chess {
                 if (Check.isCheckmate(board, whitePlayer)) {
                     return "cBlack wins";
                 }
+
+                if (currPlayer.getColor().equals("white"))
+                    currPlayer = blackPlayer;
+                else
+                    currPlayer = whitePlayer;
 
                 return "wCheck";
             }

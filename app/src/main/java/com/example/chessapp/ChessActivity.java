@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.ImageView;
@@ -24,6 +25,7 @@ public class ChessActivity extends AppCompatActivity {
     private Chess game;
     private GridLayout boardView;
     private TextView text;
+    private Button undoButton, resignButton, drawButton, aiButton;
     private int r1, c1, r2, c2;
     private String move;
     private HashMap<String, Integer> pieces;
@@ -72,8 +74,14 @@ public class ChessActivity extends AppCompatActivity {
         pieces.put("bK", R.drawable.bking);
         pieces.put("ee", R.drawable.transparent);
 
+        // initialize the board, text, and buttons
         boardView = findViewById(R.id.board);
         text = findViewById(R.id.textView);
+        undoButton = findViewById(R.id.undo);
+        resignButton = findViewById(R.id.resign);
+        drawButton = findViewById(R.id.draw);
+        aiButton = findViewById(R.id.ai);
+
         r1 = c1 = r2 = c2 = -1;
         game = new Chess();
     }
@@ -136,6 +144,9 @@ public class ChessActivity extends AppCompatActivity {
     // draws game when button is clicked
     public void handleDraw(View view) {
         //TODO: implement actual draw game functionality
+
+        String empty = game.playMove("draw");
+        pauseGame(view);
 
         // popup window appears stating that game is a draw
         // if ok is clicked, popup window disappears and new activity for saving game appears
@@ -266,5 +277,14 @@ public class ChessActivity extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
 
+    }
+
+    public void pauseGame(View view) {
+        // disables buttons and board view
+        boardView.setEnabled(false);
+        resignButton.setEnabled(false);
+        drawButton.setEnabled(false);
+        undoButton.setEnabled(false);
+        aiButton.setEnabled(false);
     }
 }
