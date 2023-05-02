@@ -184,19 +184,18 @@ public class Chess {
     }
 
     // takes in the rank/row number and file/column letter (as a number) and makes the move
-    public void playMove(String playerMove) {
+    public String playMove(String playerMove) {
+        String result = "";
         if (drawOffered && playerMove.equals("draw")) {
-            System.out.println("draw");
-            return;
+            return "draw";
         }
 
         if (playerMove.equals("resign")) {
             if (currPlayer.getColor().equals("white")) {
-                System.out.println("Black wins");
+                return "rBlack wins";
             } else {
-                System.out.println("White wins");
+                return "rWhite wins";
             }
-            return;
         }
 
         if (currPlayer.getColor().equals("white")) {
@@ -206,7 +205,7 @@ public class Chess {
                 if (p instanceof Pawn)
                     ((Pawn) p).noEnPassent();
             }
-            System.out.print("White's move: ");
+            result = "Black's move: ";
         } else {
             // enPassent no longer available after one turn
             for (int i = 0; i < board[0].length; i++) {
@@ -214,7 +213,7 @@ public class Chess {
                 if (p instanceof Pawn)
                     ((Pawn) p).noEnPassent();
             }
-            System.out.print("Black's move: ");
+            result = "White's move: ";
         }
 
         String[] moveArgs = playerMove.split("\\s");
@@ -244,8 +243,7 @@ public class Chess {
         if (currentSquare.getPiece() == null) {
             if (DEBUG)
                 System.out.println("No piece at current square");
-            System.out.println("Illegal move, try again");
-            return;
+            return "Illegal move, try again";
         }
 
         Piece currentPiece = currentSquare.getPiece();
@@ -253,24 +251,21 @@ public class Chess {
         if (!currentPiece.getColor().equals(currPlayer.getColor())) {
             if (DEBUG)
                 System.out.println("Cannot move opponent's piece");
-            System.out.println("Illegal move, try again");
-            return;
+            return "Illegal move, try again";
         }
 
         // boolean will check if the move is valid before
         if (!currentPiece.isValidMove(currPlayer, board, x2, y2)) {
             if (DEBUG)
                 System.out.println("Move not valid per piece's rules");
-            System.out.println("Illegal move, try again");
-            return;
+            return "Illegal move, try again";
         }
 
         // physically moves the piece to the destination
         if (!currentPiece.move(currPlayer, board, x2, y2)) {
             if (DEBUG)
                 System.out.println("Move causes/maintains check status");
-            System.out.println("Illegal move, try again");
-            return;
+            return "Illegal move, try again";
         }
 
         // no argument: promotes pawn to queen
@@ -289,27 +284,27 @@ public class Chess {
                     currPlayer = blackPlayer;
                 else
                     currPlayer = whitePlayer;
-                return;
+                return "";
             } else if (currentPiece instanceof Pawn) {
                 // promotion case
                 switch (moveArgs[2]) {
                     case "R":
                         Piece r = new Rook(currentPiece.getColor(), x2, y2);
                         board[x2][y2].setPiece(r);
-                        return;
+                        return "pR";
                     case "B":
                         Piece b = new Bishop(currentPiece.getColor(), x2, y2);
                         board[x2][y2].setPiece(b);
-                        return;
+                        return "pB";
                     case "N":
                         Piece n = new Knight(currentPiece.getColor(), x2, y2);
                         board[x2][y2].setPiece(n);
-                        return;
+                        return "pN";
                     default:
                         // pawn promoted to queen
                         Piece q = new Queen(currentPiece.getColor(), x2, y2);
                         board[x2][y2].setPiece(q);
-                        return;
+                        return "pQ";
                 }
             }
         }
@@ -324,12 +319,10 @@ public class Chess {
 
                 // check if checkmate
                 if (Check.isCheckmate(board, blackPlayer)) {
-                    System.out.println("Checkmate");
-                    System.out.println("White wins");
-                    return;
+                    return "cWhite wins";
                 }
 
-                System.out.println("Check");
+                return "bCheck";
             }
         } else {
             if (Check.kingInCheck(board, "white", whitePlayer.kx, whitePlayer.ky)) {
@@ -337,12 +330,10 @@ public class Chess {
 
                 // check if checkmate
                 if (Check.isCheckmate(board, whitePlayer)) {
-                    System.out.println("Checkmate");
-                    System.out.println("Black wins");
-                    return;
+                    return "bBlack wins";
                 }
 
-                System.out.println("Check");
+                return "wCheck";
             }
         }
 
@@ -351,6 +342,8 @@ public class Chess {
             currPlayer = blackPlayer;
         else
             currPlayer = whitePlayer;
+
+        return result;
     }
 
     public Square[][] getBoard() {
