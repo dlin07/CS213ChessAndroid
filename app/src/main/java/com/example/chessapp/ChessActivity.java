@@ -28,6 +28,7 @@ public class ChessActivity extends AppCompatActivity {
     private Button undoButton, resignButton, drawButton, aiButton;
     private int r1, c1, r2, c2;
     private String move;
+    private boolean undo;
     private HashMap<String, Integer> pieces;
 
     private RecordsList records;
@@ -83,6 +84,11 @@ public class ChessActivity extends AppCompatActivity {
         aiButton = findViewById(R.id.ai);
 
         r1 = c1 = r2 = c2 = -1;
+        undo = false;
+        if (!undo) {
+            undoButton.setEnabled(false);
+        }
+
         game = new Chess();
     }
 
@@ -111,6 +117,8 @@ public class ChessActivity extends AppCompatActivity {
             } else {
                 // records the move into the moves arraylist
                 record.addMove(move);
+                undo = true;
+                undoButton.setEnabled(true);
             }
 
 
@@ -133,7 +141,27 @@ public class ChessActivity extends AppCompatActivity {
 
     // undoes last move when button is clicked
     public void handleUndo(View view) {
+        if (!undo) {
+            return;
+        }
 
+        game = new Chess();
+
+        for (int i = 0; i < record.getMoves().size() - 1; i++) {
+            game.playMove(record.getMoves().get(i));
+        }
+
+        for (int i = 0; i < 64; i++) {
+            int j = i * 3;
+
+            ImageView image = (ImageView) boardView.getChildAt(i);
+            String test = game.printBoard(game.getBoard());
+            image.setImageResource(pieces.get(game.printBoard(game.getBoard()).substring(j, j + 2)));
+        }
+
+        record.removeLastMove();
+        undo = false;
+        undoButton.setEnabled(false);
     }
 
     // plays random move when button is clicked
@@ -151,6 +179,8 @@ public class ChessActivity extends AppCompatActivity {
         } else {
             // records the move into the moves arraylist
             record.addMove(move);
+            undo = true;
+            undoButton.setEnabled(true);
         }
 
         // updates board view with correct pieces in correct places using toString method
