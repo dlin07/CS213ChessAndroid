@@ -138,7 +138,33 @@ public class ChessActivity extends AppCompatActivity {
 
     // plays random move when button is clicked
     public void handleAIMove(View view) {
+        String result = game.playRandomMove();
+        String[] temp = result.split("brogdon");
+        move = temp[1];
+        result = temp[0];
 
+        // uses the same logic as the squareClicked method
+        text.setText(result);
+
+        if (result.equals("Illegal move, try again")) {
+            // does not record the move
+        } else {
+            // records the move into the moves arraylist
+            record.addMove(move);
+        }
+
+        // updates board view with correct pieces in correct places using toString method
+        // boardView.removeAllViews();
+
+        for (int i = 0; i < 64; i++) {
+            int j = i * 3;
+
+            ImageView image = (ImageView) boardView.getChildAt(i);
+            String test = game.printBoard(game.getBoard());
+            image.setImageResource(pieces.get(game.printBoard(game.getBoard()).substring(j, j + 2)));
+        }
+
+        r1 = c1 = r2 = c2 = -1;
     }
 
     // draws game when button is clicked

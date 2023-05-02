@@ -1,6 +1,7 @@
 package com.example.chessapp.Game;
 
 import java.io.*;
+import java.util.Random;
 
 import com.example.chessapp.Pieces.*;
 
@@ -354,6 +355,33 @@ public class Chess {
             currPlayer = whitePlayer;
 
         return result;
+    }
+
+    public String playRandomMove() {
+        // goes through the board and finds a random piece to move that is the same color as the player
+        // then finds a random move that is valid for that piece and moves the piece to that location
+
+        // find a random piece
+        Random rand = new Random();
+        while(true) {
+            int x1 = rand.nextInt(8);
+            int y1 = rand.nextInt(8);
+            if (!(board[x1][y1].getPiece() == null)) {
+                if (!board[x1][y1].getPiece().getColor().equals(currPlayer.getColor())) {
+                    Piece p = board[x1][y1].getPiece();
+                    for (int i = 0; i < 100; i++) {
+                        int x2 = rand.nextInt(8);
+                        int y2 = rand.nextInt(8);
+
+                        String move = "" + indexToLetter(x1) + (y1+1) + " " + indexToLetter(x2) + (y2+1);
+                        String result = playMove(move);
+                        if (!result.equals("Illegal move, try again")) {
+                            return result + "brogdon" + move;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public Square[][] getBoard() {
