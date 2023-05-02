@@ -49,29 +49,6 @@ public class RecordsViewActivity extends AppCompatActivity {
             }
         }
 
-        Record t2 = new Record();
-        t2.setName("test2");
-
-        try {
-            sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        Record t1 = new Record();
-        t1.setName("test1");
-
-        try {
-            sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        Record t3 = new Record();
-        t3.setName("test3");
-
-        records.addRecord(t1);
-        records.addRecord(t2);
-        records.addRecord(t3);
-
         //sort records based on sortType
         if(sortType.equals("name")){
             records.getRecords().sort(comparing(Record::getName));
