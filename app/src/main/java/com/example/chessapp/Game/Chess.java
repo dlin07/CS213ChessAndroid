@@ -330,7 +330,7 @@ public class Chess {
 
                 // check if checkmate
                 if (Check.isCheckmate(board, whitePlayer)) {
-                    return "bBlack wins";
+                    return "cBlack wins";
                 }
 
                 return "wCheck";
