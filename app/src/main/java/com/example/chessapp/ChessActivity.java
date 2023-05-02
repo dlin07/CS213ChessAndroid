@@ -136,10 +136,47 @@ public class ChessActivity extends AppCompatActivity {
         // Add the buttons
         builder.setPositiveButton(R.string.Ok, (dialog, id) -> {
             // User clicked OK button
-            // new activity for saving game appears
 
-            //Intent intent = new Intent(ChessActivity.this, SaveGameActivity.class);
-            //startActivity(intent);
+            // create popup for saving game with two buttons: save and cancel
+            // add user input for game name
+            AlertDialog.Builder builder2 = new AlertDialog.Builder(ChessActivity.this);
+            // user text input
+            final EditText input = new EditText(ChessActivity.this);
+            builder2.setView(input);
+
+            // Add save and cancel buttons
+            builder2.setPositiveButton(R.string.Save, (dialog2, id2) -> {
+                // User clicked save button
+                // saves game and goes back to main activity
+
+                // gets user input for game name
+                String gameName = input.getText().toString();
+
+                // set record name as gameName and adds record to records
+                record.setName(gameName);
+                records.addRecord(record);
+
+                // serializes records to .dat file
+                try {
+                    records.writeRecords(getFilesDir().getPath() + "records.dat");
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+                Intent intent = new Intent(ChessActivity.this, MainActivity.class);
+                startActivity(intent);
+            });
+            builder2.setNegativeButton(R.string.Cancel, (dialog2, id2) -> {
+                // User cancelled the dialog
+                // goes back to main activity
+
+                Intent intent = new Intent(ChessActivity.this, MainActivity.class);
+                startActivity(intent);
+            });
+
+            // Create the AlertDialog
+            AlertDialog dialog2 = builder2.create();
+            dialog2.show();
         });
         builder.setNegativeButton(R.string.Cancel, (dialog, id) -> {
             // User cancelled the dialog
