@@ -66,12 +66,7 @@ public class PlaybackActivity extends AppCompatActivity {
         // send a move using the current moveIndex
         String move = record.getMoves().get(moveIndex);
 
-        System.out.println(move);
-
-        String result = game.playMove(move);
-
-        System.out.println(result);
-
+        game.playMove(move);
 
         // updates board view with correct pieces in correct places using toString method
         // boardView.removeAllViews();
@@ -80,12 +75,16 @@ public class PlaybackActivity extends AppCompatActivity {
             int j = i * 3;
 
             ImageView image = (ImageView) boardView.getChildAt(i);
-            String test = game.printBoard(game.getBoard());
             image.setImageResource(pieces.get(game.printBoard(game.getBoard()).substring(j, j + 2)));
-
         }
 
         // increment the moveIndex
         moveIndex++;
+
+        // checks if moveIndex is the last move
+        if (moveIndex == record.getMoves().size() - 1) {
+            // if it is, disable the button
+            view.setEnabled(false);
+        }
     }
 }
