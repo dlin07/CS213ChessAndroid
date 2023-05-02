@@ -139,7 +139,7 @@ public class ChessActivity extends AppCompatActivity {
         // if ok is clicked, popup window disappears and new activity for saving game appears
 
         AlertDialog.Builder builder = new AlertDialog.Builder(ChessActivity.this);
-        // builder.setMessage(R.string.Resign);
+        builder.setMessage(R.string.Resign);
         // Add the buttons
         builder.setPositiveButton(R.string.Ok, (dialog, id) -> {
             // User clicked OK button
