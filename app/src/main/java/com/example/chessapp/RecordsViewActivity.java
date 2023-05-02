@@ -65,26 +65,19 @@ public class RecordsViewActivity extends AppCompatActivity {
         // attach the adapter to a ListView
         lvGameRecords.setAdapter(adapter);
 
-       /* Path records = Paths.get("/data/user/0/com.example.chessapp/files/records.txt");
-        try {
-            if(!Files.exists(records)){
-                Files.createFile(records);
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        // create listener for each item in the list
+        lvGameRecords.setOnItemClickListener((parent, view, position, id) -> {
+            // get the selected item text from ListView
+            Record selectedItem = (Record) parent.getItemAtPosition(position);
 
-        Scanner scanner;
-        try {
-            scanner = new Scanner(records);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+            // create intent to start the PlaybackActivity
+            Intent playbackIntent = new Intent(this, PlaybackActivity.class);
 
-        while(scanner.hasNextLine()){
-            System.out.println(scanner.nextLine());
-        }
+            // pass the selected item to the PlaybackActivity
+            playbackIntent.putExtra("record", selectedItem);
 
-        scanner.close();*/
+            // start the PlaybackActivity
+            startActivity(playbackIntent);
+        });
     }
 }

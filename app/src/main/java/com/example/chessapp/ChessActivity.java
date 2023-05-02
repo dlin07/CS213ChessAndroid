@@ -101,8 +101,8 @@ public class ChessActivity extends AppCompatActivity {
             if (result.equals("Illegal move, try again")) {
                 // does not record the move
             } else {
-                // TODO: records the move in an arraylist and handles different cases
-
+                // records the move into the moves arraylist
+                record.addMove(move);
             }
 
 
