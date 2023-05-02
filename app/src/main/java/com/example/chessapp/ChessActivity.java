@@ -95,8 +95,17 @@ public class ChessActivity extends AppCompatActivity {
             }
 
             move = "" + game.indexToLetter(c1) + r1 + " " + game.indexToLetter(c2) + r2;
-            text.setText(move);
-            game.playMove(move);
+            String result = game.playMove(move);
+            text.setText(result);
+
+            if (result.equals("Illegal move, try again")) {
+                // does not record the move
+            } else {
+                // TODO: records the move in an arraylist and handles different cases
+
+            }
+
+
 
             // updates board view with correct pieces in correct places using toString method
             // boardView.removeAllViews();
