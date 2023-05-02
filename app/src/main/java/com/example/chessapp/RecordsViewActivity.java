@@ -49,29 +49,6 @@ public class RecordsViewActivity extends AppCompatActivity {
             }
         }
 
-        Record t2 = new Record();
-        t2.setName("test2");
-
-        try {
-            sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        Record t1 = new Record();
-        t1.setName("test1");
-
-        try {
-            sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        Record t3 = new Record();
-        t3.setName("test3");
-
-        records.addRecord(t1);
-        records.addRecord(t2);
-        records.addRecord(t3);
-
         //sort records based on sortType
         if(sortType.equals("name")){
             records.getRecords().sort(comparing(Record::getName));
@@ -88,26 +65,19 @@ public class RecordsViewActivity extends AppCompatActivity {
         // attach the adapter to a ListView
         lvGameRecords.setAdapter(adapter);
 
-       /* Path records = Paths.get("/data/user/0/com.example.chessapp/files/records.txt");
-        try {
-            if(!Files.exists(records)){
-                Files.createFile(records);
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        // create listener for each item in the list
+        lvGameRecords.setOnItemClickListener((parent, view, position, id) -> {
+            // get the selected item text from ListView
+            Record selectedItem = (Record) parent.getItemAtPosition(position);
 
-        Scanner scanner;
-        try {
-            scanner = new Scanner(records);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+            // create intent to start the PlaybackActivity
+            Intent playbackIntent = new Intent(this, PlaybackActivity.class);
 
-        while(scanner.hasNextLine()){
-            System.out.println(scanner.nextLine());
-        }
+            // pass the selected item to the PlaybackActivity
+            playbackIntent.putExtra("record", selectedItem);
 
-        scanner.close();*/
+            // start the PlaybackActivity
+            startActivity(playbackIntent);
+        });
     }
 }
